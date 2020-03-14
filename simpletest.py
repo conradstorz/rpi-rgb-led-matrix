@@ -37,32 +37,34 @@ def wheel(pos):
     return (r, g, b) if ORDER == neopixel.RGB or ORDER == neopixel.GRB else (r, g, b, 0)
 
 def rainbow_cycle(wait): 
-    for j in range(255): 
-        print(f'Variable J:{j}')
-        for i in range(num_pixels):
-            print(f'Variable I:{i}')
-            pixel_index = (i * 256 // num_pixels) + j
-            pixels[i] = wheel(pixel_index & 255)
-            pixels.show() 
-            time.sleep(wait) 
+    for i in range(num_pixels):
+        #print(f'Variable I:{i}')
+        pixel_index = (i * 256 // num_pixels) + j
+        pixels[i] = wheel(pixel_index & 255)
+        pixels.show() 
+        time.sleep(wait) 
 
 
 def Main():
     # Comment this line out if you have RGBW/GRBW NeoPixels
+    print(f'Display all RED')
     pixels.fill((255, 0, 0))
     # Uncomment this line if you have RGBW/GRBW NeoPixels pixels.fill((255, 0, 0, 0))
     pixels.show()
     time.sleep(1)
     # Comment this line out if you have RGBW/GRBW NeoPixels
+    print(f'Display all BLUE')    
     pixels.fill((0, 255, 0))
     # Uncomment this line if you have RGBW/GRBW NeoPixels pixels.fill((0, 255, 0, 0))
     pixels.show()
     time.sleep(1)
     # Comment this line out if you have RGBW/GRBW NeoPixels
+    print(f'Display all GREEN')    
     pixels.fill((0, 0, 255))
     # Uncomment this line if you have RGBW/GRBW NeoPixels pixels.fill((0, 0, 255, 0))
     pixels.show() 
     time.sleep(1) 
+    print(f'Display a RAINBOW')
     rainbow_cycle(0.001) # rainbow cycle with 1ms delay per step
 
 
