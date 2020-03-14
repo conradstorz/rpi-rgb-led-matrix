@@ -138,7 +138,7 @@ def Main():
     print(f'Start random display')
     last = Set_Random_Pixels(rounds=1)
     print(f'Start solid display')
-    random_to_solid(colorName=last, fast=True)
+    random_to_solid(colorName=last, fast=True, flicker=False)
     print(f'Start second round of random display')
     last = Set_Random_Pixels(pace=.1, rounds=1)
     print(f'Start second round of solid display')   
