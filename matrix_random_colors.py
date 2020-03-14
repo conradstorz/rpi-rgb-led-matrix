@@ -54,7 +54,7 @@ def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=1, rounds=99):
     field = [int(rounds) for i in range(len(x) * len(y))]
     pxls = list(range(len(x) * len(y)))
     shuffle(pxls)  # scramble list    
-    while sum(field) > 0:
+    while len(pxls) > 0:
         color = choice(COLOR_KEYS)
         pxl = pxls.pop()
         xp = int(pxl / 8)
@@ -135,9 +135,13 @@ def DisplayMessage(message, senseObj=None, pause=1):
 
 
 def Main():
+    print(f'Start random display')
     last = Set_Random_Pixels(rounds=1)
+    print(f'Start solid display')
     random_to_solid(colorName=last, fast=True)
-    last = Set_Random_Pixels(pace=.1, rounds=1)   
+    print(f'Start second round of random display')
+    last = Set_Random_Pixels(pace=.1, rounds=1)
+    print(f'Start second round of solid display')   
     random_to_solid(fast=True)
     #sense.low_light = True
     #sense.clear(255, 255, 255)
