@@ -67,7 +67,7 @@ def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=1, rounds=99):
         if delay > 0:
             sleep(delay)
         else:
-            sleep(pace / 1000)
+            sleep(pace / 10000000)
     return color
 
 
