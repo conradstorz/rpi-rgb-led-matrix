@@ -11,6 +11,8 @@ import json
 
 USE_RPI_OUTPUT = True # set if using RPi to drive NeoPixels directly
 if USE_RPI_OUTPUT == True:
+    import board
+    import neopixel
     # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18 NeoPixels must be connected to 
     # D10, D12, D18 or D21 to work.
     pixel_pin = board.D18
