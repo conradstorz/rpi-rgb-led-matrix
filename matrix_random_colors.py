@@ -103,7 +103,7 @@ def random_to_solid(senseObj=None, colorName="black", x=index, y=index, fast=Fal
 
 
 #@logger.catch
-def DisplayMessage(senseObj=None, message, pause=1):
+def DisplayMessage(message, senseObj=None, pause=1):
     """ Place a text string on the display of the SenseHat.
     Params: senseObj: required SenseHat Object, message: text string (required) 
     """
