@@ -84,12 +84,20 @@ def random_to_solid(senseObj=None, colorName="black", x=x_index, y=y_index, fast
             pxl = field.pop()
             x = int(pxl / 8)
             y = int(pxl % 8)
-            senseObj.set_pixel(x, y, color_dict[colorName]["rgb"])
+            if USE_RPI_OUTPUT == True:
+                pixels[x * 8 + y] = color_dict[colorName]["rgb"]
+                pixels.show()         
+            if SenseHatLoaded == True:                
+                senseObj.set_pixel(x, y, color_dict[colorName]["rgb"])
             if flicker == True:
                 for ndx in field:
                     x = int(ndx / 8)
                     y = int(ndx % 8)
-                    senseObj.set_pixel(x, y, color_dict[choice(COLOR_KEYS)]["rgb"])                                
+                    if USE_RPI_OUTPUT == True:
+                        pixels[x * 8 + y] = color_dict[choice(COLOR_KEYS)]["rgb"]
+                        pixels.show()                    
+                    if SenseHatLoaded == True:                
+                        senseObj.set_pixel(x, y, color_dict[choice(COLOR_KEYS)]["rgb"])                                
             sleep(len(field)/2*.01)
     else:
         field = [1 for i in range(len(x) * len(y))]
@@ -99,7 +107,11 @@ def random_to_solid(senseObj=None, colorName="black", x=x_index, y=y_index, fast
             pxl = pixel_x * 8 + pixel_y
             if field[pxl] != 0:
                 field[pxl] = 0
-                senseObj.set_pixel(pixel_x, pixel_y, color_dict[colorName]["rgb"])
+                if USE_RPI_OUTPUT == True:
+                    pixels[pixel_x * 8 + pixel_y] = color_dict[colorName]["rgb"]
+                    pixels.show()      
+                if SenseHatLoaded == True:                              
+                    senseObj.set_pixel(pixel_x, pixel_y, color_dict[colorName]["rgb"])
             sleep(0.1)
     return True
 
@@ -118,9 +130,9 @@ def DisplayMessage(message, senseObj=None, pause=1):
 
 
 def Main():
-    last = Set_Random_Pixels()
+    last = Set_Random_Pixels(rounds=1)
     random_to_solid(colorName=last)
-    last = Set_Random_Pixels(pace=.1)   
+    last = Set_Random_Pixels(pace=.1, rounds=1)   
     random_to_solid(fast=True)
     #sense.low_light = True
     #sense.clear(255, 255, 255)
