@@ -52,16 +52,19 @@ def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=1, rounds=99):
     # TODO range check x,y, rounds and pace
     # TODO type check senseObj
     field = [int(rounds) for i in range(len(x) * len(y))]
+    pxls = list(range(len(x) * len(y)))
+    shuffle(pxls)  # scramble list    
     while sum(field) > 0:
         color = choice(COLOR_KEYS)
-        pixel_x = choice(x)
-        pixel_y = choice(y)
-        iters = field[pixel_x * 8 + pixel_y]
-        field[pixel_x * 8 + pixel_y] = iters - 1
+        pxl = pxls.pop()
+        xp = int(pxl / 8)
+        yp = int(pxl % 8)        
+        iters = field[xp * 8 + yp]
+        field[xp * 8 + yp] = iters - 1
         if SenseHatLoaded == True:
-            senseObj.set_pixel(pixel_x, pixel_y, color_dict[color]["rgb"])
+            senseObj.set_pixel(xp, yp, color_dict[color]["rgb"])
         if USE_RPI_OUTPUT == True:
-            pixels[pixel_x * 8 + pixel_y] = color_dict[color]["rgb"]
+            pixels[xp * 8 + yp] = color_dict[color]["rgb"]
             pixels.show() 
         """
         delay = (pace / 10000000) * (sum(field) / rounds)
