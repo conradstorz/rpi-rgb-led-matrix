@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 # Simple test for NeoPixels on Raspberry Pi
 import time 
 import board 
@@ -41,7 +45,7 @@ def rainbow_cycle(wait):
             time.sleep(wait) 
 
 
-while True:
+def Main():
     # Comment this line out if you have RGBW/GRBW NeoPixels
     pixels.fill((255, 0, 0))
     # Uncomment this line if you have RGBW/GRBW NeoPixels pixels.fill((255, 0, 0, 0))
@@ -58,3 +62,7 @@ while True:
     pixels.show() 
     time.sleep(1) 
     rainbow_cycle(0.001) # rainbow cycle with 1ms delay per step
+
+
+if __name__ == "__main__":
+    Main()
