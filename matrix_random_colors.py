@@ -63,11 +63,13 @@ def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=1, rounds=99):
         if USE_RPI_OUTPUT == True:
             pixels[pixel_x * 8 + pixel_y] = color_dict[color]["rgb"]
             pixels.show() 
+        """
         delay = (pace / 10000000) * (sum(field) / rounds)
         if delay > 0:
             sleep(delay)
         else:
             sleep(pace / 10000000)
+        """
     return color
 
 
