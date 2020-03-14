@@ -42,11 +42,11 @@ x_index = list(range(32)) # establish a default index for 32x8 pixel display
 y_index = list(range(8)) # establish a default index for 32x8 pixel display
 
 
-def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=0.01, rounds=99):
+def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=1, rounds=99):
     """ Fill display with random pixel colors.
     Params: senseObj = senseHat Object pointer (required)
     Optional: ,x,y list of valid index values (zero based) (size of area to display)
-    Optional: ,pace >0<=1 (speed of change)
+    Optional: ,pace >0<=1 (speed of change, 1=fastest)
     Optional: ,rounds >=1 (number of times each pixel will change on average)
     """
     # TODO range check x,y, rounds and pace
@@ -63,11 +63,11 @@ def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=0.01, rounds=99)
         if USE_RPI_OUTPUT == True:
             pixels[pixel_x * 8 + pixel_y] = color_dict[color]["rgb"]
             pixels.show() 
-        delay = (sum(field) / rounds) / (100 / pace)
+        delay = (sum(field) / rounds) * (pace / 1000)
         if delay > 0:
             sleep(delay)
         else:
-            sleep(.0001)
+            sleep(pace / 1000)
     return color
 
 
@@ -131,7 +131,7 @@ def DisplayMessage(message, senseObj=None, pause=1):
 
 def Main():
     last = Set_Random_Pixels(rounds=1)
-    random_to_solid(colorName=last)
+    random_to_solid(colorName=last, fast=True)
     last = Set_Random_Pixels(pace=.1, rounds=1)   
     random_to_solid(fast=True)
     #sense.low_light = True
