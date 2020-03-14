@@ -142,7 +142,7 @@ def Main():
     print(f'Start second round of random display')
     last = Set_Random_Pixels(pace=.1, rounds=1)
     print(f'Start second round of solid display')   
-    random_to_solid(fast=True)
+    random_to_solid(fast=True, filcker=False)
     #sense.low_light = True
     #sense.clear(255, 255, 255)
     return
