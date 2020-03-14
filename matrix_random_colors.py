@@ -71,7 +71,7 @@ def Set_Random_Pixels(senseObj=None, x=x_index, y=y_index, pace=0.01, rounds=99)
     return color
 
 
-def random_to_solid(senseObj=None, colorName="black", x=index, y=index, fast=False, flicker=True):
+def random_to_solid(senseObj=None, colorName="black", x=x_index, y=y_index, fast=False, flicker=True):
     """flicker controls if display should animate during color unifomity process 
     """
     if colorName not in color_dict.keys():
